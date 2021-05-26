@@ -7,8 +7,8 @@
 #ifndef TAREA_H
 #define TAREA_H
 
-#include <iostream>
 #include <string>
+#include <iostream>
 #include "misc.h"
 using namespace std;
 
@@ -18,7 +18,7 @@ class Tarea
   protected:
     string titulo_;
     string desc_;
-    int id = rand();
+    int id;
     string tipo;
   
   public:
@@ -29,14 +29,16 @@ class Tarea
     void set_desc(string desc){desc_ = desc;}
     int get_id(){return id;}
     string get_tipo(){return tipo;}
-    virtual void muestra_info(); //Método  que será sobreescrito por clases hijas
+    virtual void muestra_info() = 0; //Método abstracto  que será sobreescrito por clases hijas
     //Constructores y destructor
     Tarea(string titulo):
     titulo_(titulo),
-    desc_("Sin descripción"){cout << "Tarea añadida (sin descripción)" << '\n';}
+    desc_("Sin descripción"),
+    id(rand()){cout << "Tarea añadida (sin descripción)" << '\n';}
     Tarea(string titulo, string desc):
     titulo_(titulo),
-    desc_(desc){cout << "Tarea añadida (con descripción)" << '\n';}
+    desc_(desc),
+    id(rand()){cout << "Tarea añadida (con descripción)" << '\n';}
     ~Tarea(){cout << "Tarea eliminada" << '\n';}
 };
 
@@ -45,7 +47,6 @@ void Tarea::muestra_info() //Muestra información del objeto
   cout << '\n' << titulo_ << "      ID: " << id << "\n\n";
   cout << "Descripción:" << '\n' << desc_ << "\n\n";
 }
-
 
 //Clase Tarea_Individual que hereda de Tarea
 class Tarea_Individual : public Tarea
@@ -96,9 +97,11 @@ string Tarea_Individual::msg_prioridad(int prioridad)
   return msg;
 }
 
-void Tarea_Individual::muestra_info() //Muestra información del objeto
+void Tarea_Individual::muestra_info() //Muestra información del objeto, sobreescritura
 {
-  Tarea::muestra_info();
+  cout << "---------------------------------------------" << '\n';
+  cout << '\n' << titulo_ << "      ID: " << id << "\n\n";
+  cout << "Descripción:" << '\n' << desc_ << "\n\n";
   cout << "Encargado: " << encargado_ << "    Prioridad: " << msg_prioridad(prioridad_) << "\n\n";
   cout << "---------------------------------------------" << '\n';
 }
@@ -152,9 +155,11 @@ string Tarea_Grupal::msg_prioridad(int prioridad)
   return msg;
 }
 
-void Tarea_Grupal::muestra_info() //Muestra información del objeto
+void Tarea_Grupal::muestra_info() //Muestra información del objeto, sobreescritura
 {
-  Tarea::muestra_info();
+  cout << "---------------------------------------------" << '\n';
+  cout << '\n' << titulo_ << "      ID: " << id << "\n\n";
+  cout << "Descripción:" << '\n' << desc_ << "\n\n";
   cout << "Equipo encargado: " << equipo_ << "    Prioridad: " << msg_prioridad(prioridad_) << "\n\n";
   cout << "---------------------------------------------" << '\n';
 }
@@ -180,9 +185,11 @@ class Evento : public Tarea
     ~Evento(){}
 };
 
-void Evento::muestra_info() //Muestra información del objeto
+void Evento::muestra_info() //Muestra información del objeto, sobreescritura
 {
-  Tarea::muestra_info();
+  cout << "---------------------------------------------" << '\n';
+  cout << '\n' << titulo_ << "      ID: " << id << "\n\n";
+  cout << "Descripción:" << '\n' << desc_ << "\n\n";
   cout << "Hora del evento: " << hora_evento_.hora << ":" << hora_evento_.minuto << "\n\n";
   cout << "---------------------------------------------" << '\n';
 }
