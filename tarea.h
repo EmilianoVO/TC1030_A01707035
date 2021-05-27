@@ -10,7 +10,6 @@
 #include <string>
 #include <iostream>
 #include "misc.h"
-using namespace std;
 
 //Clase abstracta Tarea que contiene información general de una tarea creada por el usuario
 class Tarea
@@ -39,14 +38,8 @@ class Tarea
     titulo_(titulo),
     desc_(desc),
     id(rand()){cout << "Tarea añadida (con descripción)" << '\n';}
-    ~Tarea(){cout << "Tarea eliminada" << '\n';}
+    virtual ~Tarea(){cout << "Tarea eliminada" << '\n';} //Destructor virtual para prevenir problemas al eliminar apuntadores a clase abstracta
 };
-
-void Tarea::muestra_info() //Muestra información del objeto
-{
-  cout << '\n' << titulo_ << "      ID: " << id << "\n\n";
-  cout << "Descripción:" << '\n' << desc_ << "\n\n";
-}
 
 //Clase Tarea_Individual que hereda de Tarea
 class Tarea_Individual : public Tarea
@@ -103,7 +96,7 @@ void Tarea_Individual::muestra_info() //Muestra información del objeto, sobrees
   cout << '\n' << titulo_ << "      ID: " << id << "\n\n";
   cout << "Descripción:" << '\n' << desc_ << "\n\n";
   cout << "Encargado: " << encargado_ << "    Prioridad: " << msg_prioridad(prioridad_) << "\n\n";
-  cout << "---------------------------------------------" << '\n';
+  cout << "---------------------------------------------" << "\n\n";
 }
 
 //Clase Tarea_Grupal que hereda de Tarea
@@ -158,10 +151,10 @@ string Tarea_Grupal::msg_prioridad(int prioridad)
 void Tarea_Grupal::muestra_info() //Muestra información del objeto, sobreescritura
 {
   cout << "---------------------------------------------" << '\n';
-  cout << '\n' << titulo_ << "      ID: " << id << "\n\n";
+  cout << '\n' << titulo_ << "    Tipo: " << tipo << "      ID: " << id << "\n\n";
   cout << "Descripción:" << '\n' << desc_ << "\n\n";
   cout << "Equipo encargado: " << equipo_ << "    Prioridad: " << msg_prioridad(prioridad_) << "\n\n";
-  cout << "---------------------------------------------" << '\n';
+  cout << "---------------------------------------------" << "\n\n";
 }
 
 //Clase Evento que hereda de Tarea
@@ -188,10 +181,19 @@ class Evento : public Tarea
 void Evento::muestra_info() //Muestra información del objeto, sobreescritura
 {
   cout << "---------------------------------------------" << '\n';
-  cout << '\n' << titulo_ << "      ID: " << id << "\n\n";
+  cout << '\n' << titulo_  << "    Tipo: " << tipo << "      ID: " << id << "\n\n";
   cout << "Descripción:" << '\n' << desc_ << "\n\n";
-  cout << "Hora del evento: " << hora_evento_.hora << ":" << hora_evento_.minuto << "\n\n";
-  cout << "---------------------------------------------" << '\n';
+  cout << "Hora del evento: ";
+  if(hora_evento_.hora < 10) //Agrega el 0 antes de la hora si tiene solo un dígito
+    cout << "0";
+
+  cout << hora_evento_.hora << ":";
+  
+  if(hora_evento_.minuto < 10)//Agrega el 0 antes del minuto si tiene solo un dígito
+    cout << "0";
+
+   cout << hora_evento_.minuto << "\n\n";
+  cout << "---------------------------------------------" << "\n\n";
 }
 
 #endif

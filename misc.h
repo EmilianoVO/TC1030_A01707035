@@ -9,6 +9,7 @@
 
 #include <cstdlib>
 #include <ctime>
+
 using namespace std;
 
 //Definimos estructura tiempo que será utilizada por las clases de tipo evento
