@@ -325,7 +325,7 @@ void Tareas_Dia::menu_tareas_diarias() //Se despliegan las opciones apra manejar
     cout << "Elige lo que deseas hacer: (ingresa el número de la opción): \n";
     if(lista_tareas.empty()) //Se muestran menos opciones si la lista está vacía
     {
-      cout << "1. Agregar tarea \n0. Salir";
+      cout << "1. Agregar tarea \n0. Salir\n";
       cin >> selec;
       switch(selec)
       {
