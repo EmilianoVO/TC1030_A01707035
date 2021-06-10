@@ -21,6 +21,10 @@ Y finalmente se corre el ejecutable de la siguiente manera (Windows):
 	a.exe
 ```
 
+### Cambios de acuerdo a comentarios (para competencias)
+- SICT0302A: Se implementa sobrecarga en la clase tarea, con la función muestra_info. Esta función es ahora virtual pura debido a los cambios para avances siguientes.
+- Getters y setters: Se agrega explicación al final del README en cuanto la falta de ciertos métodos de acceso en las clases. (Decisiones de diseño)
+
 ### Uso del programa
 Al correr el ejecutable en una terminal, lo primero que se verá será un menu similar al siguiente:
 ![](imagenes/uso1.jpg)
@@ -53,7 +57,6 @@ Además de esto, es posible que existan problemas al momento de desplegar caract
 
 Como se puede identificar en el UML, no se cuenta con métodos de acceso (getters y setters) para todos los atributos de cada clase, lo cual es intencional y se utilza como medida de seguridad, ejemplos de esto son:
 
-- En la clase Tarea, para el ID generado y el tipo no se cuenta con setters debido a que estos atributos se deben mantener constantes en cada uno, ya que son identificadores importante, y de los cuales no existe necesidad de que otros objetos modifiquen.
+- En la clase Tarea, para el ID generado y el tipo no se cuenta con setters debido a que estos atributos se deben mantener constantes en cada uno, ya que son identificadores importantes, y de los cuales no existe necesidad de que otros objetos modifiquen.
 - En la clase Tareas_Dia no se cuenta con setters para el número de tareas totales y completadas, esto se debe a que el manejo de estos atributos se lleva a cabo únicamente por los métodos para eliminar tareas de la misma clase, por lo que no es necesario que otra clase modifique dichos valores, solo es necesario leerlos para desplegar la información.
 
-![](UML_A01707035.pdf)
